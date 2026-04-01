@@ -60,7 +60,7 @@ const emptySubscriptionForm = {
 
 export default function Admin() {
     const navigate = useNavigate();
-    const API_BASE = import.meta.env.VITE_API_URL || "https://companyassignment-ycfz.onrender.com";
+    const API_BASE = "https://companyassignment-ycfz.onrender.com/auth";
 
     const [dashboard, setDashboard] = useState(initialDashboard);
     const [loading, setLoading] = useState(false);
