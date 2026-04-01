@@ -18,7 +18,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000/auth"
+  const API_BASE = import.meta.env.VITE_API_URL || "https://companyassignment-ycfz.onrender.com"
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
