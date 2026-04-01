@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("https://companyassignment-ycfz.onrender.com", {
+      const res = await axios.post("https://companyassignment-ycfz.onrender.com/auth/login", {
         email: formData.email,
         password: formData.password,
       });
