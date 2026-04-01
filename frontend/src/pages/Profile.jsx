@@ -145,9 +145,9 @@ export default function Profile() {
       setSuccess("");
 
       const [plansRes, charitiesRes, userRes] = await Promise.all([
-        api.get("/subscriptions"),
-        api.get("/charities"),
-        api.get(`/users/${userId}`),
+        api.get("auth/subscriptions"),
+        api.get("auth/charities"),
+        api.get(`auth/users/${userId}`),
       ]);
 
       const plansData = pickArray(plansRes.data, ["plans", "subscriptions", "subscriptionPlans"]);
