@@ -231,7 +231,7 @@ export default function Profile() {
         phone: profile.phone,
       };
 
-      await api.put(`/users/${userId}`, payload);
+      await api.put(`/auth/users/${userId}`, payload);
       setSuccess("Profile updated successfully.");
       await fetchProfileData();
     } catch (err) {
@@ -311,7 +311,7 @@ export default function Profile() {
       setError("");
       setSuccess("");
 
-      await api.post("/select-charity", {
+      await api.post("/auth/select-charity", {
         charityId: profile.selectedCharityId,
         contributionPercentage: Number(profile.contributionPercentage),
       });
