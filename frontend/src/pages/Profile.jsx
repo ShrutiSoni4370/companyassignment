@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useContext , useMemo} from "react";
+import { useContext, useMemo, useState, useEffect } from "react"; // ✅ FIXED
 import { UserContext } from "../context/UserContext";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://companyassignment-ycfz.onrender.com";
+const API_BASE = "https://companyassignment-ycfz.onrender.com";
+
+
 
 function pickArray(payload, keys = []) {
   if (Array.isArray(payload)) return payload;
@@ -254,7 +256,7 @@ export default function Profile() {
       setError("");
       setSuccess("");
 
-      const response = await api.post("/select-subscription", {
+      const response = await api.post("/auth/select-subscription", {
         subscriptionId: profile.selectedSubscriptionId,
       });
 
@@ -349,7 +351,7 @@ export default function Profile() {
       setError("");
       setSuccess("");
 
-      const response = await api.post("/scores", {
+      const response = await api.post("auth/scores", {
         stableford,
         date: scoreForm.date,
         course: scoreForm.course,
@@ -377,7 +379,7 @@ export default function Profile() {
       setError("");
       setSuccess("");
 
-      const response = await api.delete(`/scores/${scoreId}`);
+      const response = await api.delete(`auth/scores/${scoreId}`);
       const updatedScores = pickArray(response.data, ["scores"]);
 
       setProfile((prev) => ({
