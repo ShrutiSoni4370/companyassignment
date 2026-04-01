@@ -60,7 +60,7 @@ const emptySubscriptionForm = {
 
 export default function Admin() {
     const navigate = useNavigate();
-    const API_BASE = "https://companyassignment-ycfz.onrender.com/auth";
+    const API_BASE = "https://companyassignment-ycfz.onrender.com";
 
     const [dashboard, setDashboard] = useState(initialDashboard);
     const [loading, setLoading] = useState(false);
@@ -152,9 +152,9 @@ export default function Admin() {
             setError("");
 
             const [usersRes, charitiesRes, subscriptionsRes] = await Promise.all([
-                axios.get(`${API_BASE}/users`),
-                axios.get(`${API_BASE}/charities`),
-                axios.get(`${API_BASE}/subscriptions`),
+                axios.get(`${API_BASE}/auth/users`),
+                axios.get(`${API_BASE}/auth/charities`),
+                axios.get(`${API_BASE}/auth/subscriptions`),
             ]);
 
             const users = usersRes?.data?.data || [];
@@ -214,7 +214,7 @@ export default function Admin() {
             setError("");
             setMessage("");
 
-            const res = await axios.post(`${API_BASE}/run`);
+            const res = await axios.post(`${API_BASE}/auth/run`);
             const result = res?.data?.data;
 
             const winnerName = result?.winner?.name || "Unknown winner";
@@ -297,7 +297,7 @@ export default function Admin() {
             setError("");
             setMessage("");
 
-            const res = await axios.get(`${API_BASE}/users/${user._id}`);
+            const res = await axios.get(`${API_BASE}/auth/users/${user._id}`);
             const data = res?.data?.data || user;
 
             setSelectedUserDetails(data);
@@ -325,10 +325,10 @@ export default function Admin() {
             };
 
             if (editingUserId) {
-                await axios.put(`${API_BASE}/users/${editingUserId}`, payload);
+                await axios.put(`${API_BASE}/auth/users/${editingUserId}`, payload);
                 setMessage("User updated successfully!");
             } else {
-                await axios.post(`${API_BASE}/users`, payload);
+                await axios.post(`${API_BASE}/auth/users`, payload);
                 setMessage("User created successfully!");
             }
 
@@ -358,10 +358,10 @@ export default function Admin() {
             };
 
             if (editingCharityId) {
-                await axios.put(`${API_BASE}/charities/${editingCharityId}`, payload);
+                await axios.put(`${API_BASE}/auth/charities/${editingCharityId}`, payload);
                 setMessage("Charity updated successfully!");
             } else {
-                await axios.post(`${API_BASE}/charities`, payload);
+                await axios.post(`${API_BASE}/auth/charities`, payload);
                 setMessage("Charity created successfully!");
             }
 
@@ -392,10 +392,10 @@ export default function Admin() {
             };
 
             if (editingSubscriptionId) {
-                await axios.put(`${API_BASE}/subscriptions/${editingSubscriptionId}`, payload);
+                await axios.put(`${API_BASE}/auth/subscriptions/${editingSubscriptionId}`, payload);
                 setMessage("Subscription updated successfully!");
             } else {
-                await axios.post(`${API_BASE}/subscriptions`, payload);
+                await axios.post(`${API_BASE}/auth/subscriptions`, payload);
                 setMessage("Subscription created successfully!");
             }
 
@@ -418,7 +418,7 @@ export default function Admin() {
         try {
             setLoading(true);
             setError("");
-            await axios.delete(`${API_BASE}/users/${id}`);
+            await axios.delete(`${API_BASE}/auth/users/${id}`);
             setMessage("User deleted successfully!");
             await fetchDashboard();
         } catch (err) {
@@ -436,7 +436,7 @@ export default function Admin() {
         try {
             setLoading(true);
             setError("");
-            await axios.delete(`${API_BASE}/charities/${id}`);
+            await axios.delete(`${API_BASE}/auth/charities/${id}`);
             setMessage("Charity deleted successfully!");
             await fetchDashboard();
         } catch (err) {
@@ -454,7 +454,7 @@ export default function Admin() {
         try {
             setLoading(true);
             setError("");
-            await axios.delete(`${API_BASE}/subscriptions/${id}`);
+            await axios.delete(`${API_BASE}/auth/subscriptions/${id}`);
             setMessage("Subscription deleted successfully!");
             await fetchDashboard();
         } catch (err) {
