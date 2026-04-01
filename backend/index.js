@@ -15,7 +15,10 @@ app.use(express.static("dist"));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+    "http://localhost:5173",
+    "https://companyassignment-1-hcmj.onrender.com"
+  ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
